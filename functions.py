@@ -8,9 +8,9 @@ def draw_grid(screen, color=''):
     color = color if color!=None else bg.black
     width, height = screen.size()
     for y in range(height):
-        for i in range(3*width+1): screen.set(i, y*4, '-')
+        for i in range(3*width+(width-4)): screen.set(i, y*4, '-')
     for x in range(width):
-        for i in range(3*height+1): screen.set(x*4, i, '|')
+        for i in range(3*height+(height-4)): screen.set(x*4, i, '|')
         for y in range(height):
             screen.set(x*4, y*4, 'x')
 

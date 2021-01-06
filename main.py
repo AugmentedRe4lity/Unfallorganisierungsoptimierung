@@ -9,7 +9,7 @@ from screen import Screen
 from object import Object
 
 if '__main__' == __name__:
-    width, height = 4, 4
+    width, height = 20, 10
     screen = Screen(width, height)
 
     weights = generate_weights(width, height)
@@ -17,13 +17,13 @@ if '__main__' == __name__:
     draw_grid(screen, color=bg.white)
     draw_weights(screen, weights)
 
-    while True:
-        notarzt = Object(randint(0,3)*4, randint(0,3)*4, 'N', yellow, bg.red, width=width)
-        krankenhaus = Object(randint(0,3)*4, randint(0,3)*4, '+', red, bg.white, width=width)
-        krankenwagen = Object(randint(0,3)*4, randint(0,3)*4, 'W', red, bg.yellow, width=width)
-        if notarzt.position != krankenhaus.position and krankenhaus.position != krankenwagen.position:
-            break
+    # while True:
+    #     notarzt = Object(randint(0,3)*4, randint(0,3)*4, 'N', yellow, bg.red, width=width)
+    #     krankenhaus = Object(randint(0,3)*4, randint(0,3)*4, '+', red, bg.white, width=width)
+    #     krankenwagen = Object(randint(0,3)*4, randint(0,3)*4, 'W', red, bg.yellow, width=width)
+    #     if notarzt.position != krankenhaus.position and krankenhaus.position != krankenwagen.position:
+    #         break
 
-    screen.show_object([notarzt, krankenhaus, krankenwagen])
+    # screen.show_object([notarzt, krankenhaus, krankenwagen])
 
     screen.display()

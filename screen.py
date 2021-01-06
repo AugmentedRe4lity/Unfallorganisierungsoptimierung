@@ -4,7 +4,7 @@ from os import system
 
 class Screen:
     def __init__(self, width, height, foreground=None, background=None):
-        self.screen = [[" " for _ in range(width*3+1)] for _ in range(height*3+1)]
+        self.screen = [[" " for _ in range(width*3+(width-3))] for _ in range(height*3+(height-3))]
         self.width = width
         self.height = height
         self.background = background if background!=None else bg.black
@@ -13,7 +13,6 @@ class Screen:
     def set(self, x, y, c, background=None, foreground=None):
         background = str(background) if background!=None else str(self.background)
         foreground = str(foreground) if foreground!=None else str(self.foreground)
-        print(x, y)
         self.screen[y][x] = background+foreground+c+str(self.background)+str(self.foreground)
 
     def show_object(self, objects):

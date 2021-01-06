@@ -17,13 +17,13 @@ if '__main__' == __name__:
     draw_grid(screen, color=bg.white)
     draw_weights(screen, weights)
 
-    # while True:
-    #     notarzt = Object(randint(0,3)*4, randint(0,3)*4, 'N', yellow, bg.red, width=width)
-    #     krankenhaus = Object(randint(0,3)*4, randint(0,3)*4, '+', red, bg.white, width=width)
-    #     krankenwagen = Object(randint(0,3)*4, randint(0,3)*4, 'W', red, bg.yellow, width=width)
-    #     if notarzt.position != krankenhaus.position and krankenhaus.position != krankenwagen.position:
-    #         break
+    while True:
+        notarzt = Object(randint(0,width-1)*4, randint(0,height-1)*4, 'N', yellow, bg.red, width=width)
+        krankenhaus = Object(randint(0,width-1)*4, randint(0,height-1)*4, '+', red, bg.white, width=width)
+        krankenwagen = Object(randint(0,width-1)*4, randint(0,height-1)*4, 'W', red, bg.yellow, width=width)
+        if notarzt.position != krankenhaus.position and krankenhaus.position != krankenwagen.position:
+            break
 
-    # screen.show_object([notarzt, krankenhaus, krankenwagen])
+    screen.show_object([notarzt, krankenhaus, krankenwagen])
 
     screen.display()

@@ -21,10 +21,10 @@ def generate_weights(width, height):
     for i in range(width*height):
         if i+width<width*height:
             w = randint(1,9)
-            weights[i].append([i+width, w, log_blend_colours[w-1]])
+            weights[i].append([i+width, w, log_blend_colours[len(log_blend_colours)-w-2]])
         if i%width+1<width:
             w = randint(1,9)
-            weights[i].append([i+1, w, log_blend_colours[w-1]])
+            weights[i].append([i+1, w, log_blend_colours[len(log_blend_colours)-w-2]])
 
     for i, point in enumerate(weights):
         for weight in point:
@@ -51,3 +51,8 @@ def draw_weights(screen, weights):
             nx, ny = index%width * 4, index//width * 4
 
             screen.set(int(mean([x, nx])), int(mean([y, ny])), char, foreground=color)
+
+def shortest_paths_from(index, weights):
+    visited = []
+    unvisited = [i for i in range(len(weights))]
+    print(unvisited)

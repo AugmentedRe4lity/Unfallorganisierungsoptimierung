@@ -9,7 +9,7 @@ from screen import Screen
 from object import Object
 
 if '__main__' == __name__:
-    width, height = 15, 15
+    width, height = 4, 4
     screen = Screen(width, height)
 
     weights = generate_weights(width, height)
@@ -19,3 +19,5 @@ if '__main__' == __name__:
 
 
     screen.display()
+
+    shortest_paths_from(0, weights)

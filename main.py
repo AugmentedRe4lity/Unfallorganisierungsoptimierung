@@ -9,7 +9,7 @@ from screen import Screen
 from object import Object
 
 if '__main__' == __name__:
-    width, height = 4, 4
+    width, height = 20, 10
     screen = Screen(width, height)
 
     weights = generate_weights(width, height)
@@ -17,7 +17,8 @@ if '__main__' == __name__:
     draw_grid(screen, color=bg.white)
     draw_weights(screen, weights)
 
+    sp = shortest_paths_from(0, weights)
+    shortest_distance = show_shortest_path_from_to(screen, sp, 0, width*height-1)
+    print(shortest_distance)
 
     screen.display()
-
-    shortest_paths_from(0, weights)

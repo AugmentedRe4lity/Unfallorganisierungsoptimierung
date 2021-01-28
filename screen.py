@@ -11,6 +11,15 @@ class Screen:
         self.background = background if background!=None else bg.black
         self.foreground = foreground if foreground!=None else white
 
+    def clear(self, debug = False):
+        os_platform = platform.system()
+        if not debug:
+            if os_platform=='Windows':
+                system('cls')
+            else:
+                system('clear')
+        self.screen = [[" " for _ in range(self.width*3+(self.width-3))] for _ in range(self.height*3+(self.height-3))]
+
     def set(self, x, y, c, background=None, foreground=None):
         background = str(background) if background!=None else str(self.background)
         foreground = str(foreground) if foreground!=None else str(self.foreground)
@@ -18,18 +27,6 @@ class Screen:
             self.screen[y][x] = background+foreground+c+str(self.background)+str(self.foreground)
 
     def show_object(self, objects):
-        # for object in objects:
-        #     for x in [-1,0,1]:
-        #         for y in [-1,0,1]:
-        #             if x==0 and y==0:
-        #                 self.set(object.x, object.y, '\b'+object.label+str(bg.blue)+' ', object.bg, object.fg)
-        #             elif x==-1:
-        #                 self.set(object.x+x, object.y+y, '  ', bg.blue, white)
-        #             elif x==1:
-        #                 self.set(object.x+x, object.y+y, '\b ', bg.blue, white)
-        #             else:
-        #                 self.set(object.x+x, object.y+y, '\b  ', bg.blue, white)
-
         for object in objects:
             self.set(object.x, object.y, object.label, object.bg, object.fg)
             self.set(object.x-1, object.y-1, '\\')
@@ -38,14 +35,26 @@ class Screen:
             self.set(object.x+1, object.y-1, '/')
             print(f'{object.label}: {object.x}, {object.y}')
 
-    def display(self, debug = False):
-        os_platform = platform.system()
-        if not debug:
-            if os_platform=='Windows':
-                system('cls')
-            else:
-                system('clear')
+    def show_way(self, way, background, von=0, bis=None):
+        px, py = way[von]%self.width*4, way[von]//self.width*4
 
+        for i in way[von:bis]:
+            x, y = i%self.width*4, i//self.width*4
+
+            self.set(x, y, ' ', background)
+            for nx in range(px, x):
+                if nx%4!=2:self.set(nx, y, ' ', background)
+            for ny in range(py, y):
+                if ny%4!=2:self.set(x, ny, ' ', background)
+            for nx in range(px, x, -1):
+                if nx%4!=2:self.set(nx, y, ' ', background)
+            for ny in range(py, y, -1):
+                if ny%4!=2:self.set(x, ny, ' ', background)
+
+
+            px, py = x, y
+
+    def display(self):
         print('\n'.join([' '.join([j for j in i]) for i in self.screen]))
 
     def size(self):

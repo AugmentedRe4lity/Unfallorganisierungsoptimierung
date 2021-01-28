@@ -10,9 +10,20 @@ class Object:
         self.label = label
         self.fg = foregroundcolor
         self.bg = backgroundcolor
+        self.width = width
         self.index = int(x/4+y*width/4)
 
     def move(self, x, y):
         sleep(1)
         self.x += x
         self.y += y
+        self.index = int(self.x/4+self.y*self.width/4)
+
+    def set_xy(self, x, y):
+        self.x = x
+        self.y = y
+        self.index = int(x/4+y*self.width/4)
+
+    def set_i(self, i):
+        self.x, self.y = i%self.width*4, i//self.width*4
+        self.index = i

@@ -105,31 +105,38 @@ def shortest_paths_from(index, weights):
 
     return sort_dict(s_paths)
 
-def show_shortest_path_from_to(screen, s_paths, start, target):
-    dist = s_paths[target][0]
+def distance(path, target=None):
+    if target == None:
+        target = path[1]
+        path = path[0]
+    return path[target][0]
+
+def way(path, target=None):
+    if target == None:
+        target = path[1]
+        path = path[0]
+    way = [target]
+    start = -1
+    for key, value in path.items():
+        if key == value[1]:
+            start = key
     i = target
-    l = i
     while i!=start:
-        i = s_paths[i][1]
-        xi, yi = i%screen.width, i//screen.width
-        xl, yl = l%screen.width, l//screen.width
-        if xi == xl:
-            if yi>yl:
-                for j in range(yl*4, yi*4+1):
-                    if j != yl*4+2:
-                        screen.set(xi*4, j, ' ', background=bg.blue)
-            else:
-                for j in range(yi*4, yl*4+1):
-                    if j != yi*4+2:
-                        screen.set(xi*4, j, ' ', background=bg.blue)
-        else:
-            if xi>xl:
-                for j in range(xl*4, xi*4+1):
-                    if j != xl*4+2:
-                        screen.set(j, yi*4, ' ', background=bg.blue)
-            else:
-                for j in range(xi*4, xl*4+1):
-                    if j != xi*4+2:
-                        screen.set(j, yi*4, ' ', background=bg.blue)
-        l = i
-    return dist
+        way.append(path[i][1])
+        i = path[i][1]
+    way.reverse()
+    return way
+
+def fast_meet(p1, p2):
+    min = -1
+    j = 0
+    for i in range(len(p1)):
+        if min==-1 or p1[i][0]+p2[i][0]<min:
+            min = p1[i][0]+p2[i][0]
+            j = i
+    return j, min
+
+def clear(screen, weights, debug):
+    screen.clear(debug=debug)
+    draw_grid(screen, color=bg.white)
+    draw_weights(screen, weights)

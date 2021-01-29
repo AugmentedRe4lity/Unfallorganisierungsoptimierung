@@ -33,7 +33,6 @@ class Screen:
             self.set(object.x-1, object.y+1, '/')
             self.set(object.x+1, object.y+1, '\\')
             self.set(object.x+1, object.y-1, '/')
-            print(f'{object.label}: {object.x}, {object.y}')
 
     def show_way(self, way, background, von=0, bis=None):
         px, py = way[von]%self.width*4, way[von]//self.width*4

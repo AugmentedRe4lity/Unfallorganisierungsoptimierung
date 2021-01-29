@@ -1,6 +1,8 @@
 from ansi.colour.fg import *
 from ansi.colour.rgb import rgb256
 
+# Farben von rot nach grün um die Gewichtung der Verbindung darzustellen
+
 log_blend_colours = [
     rgb256(255,0,0),
     rgb256(242,81,0),

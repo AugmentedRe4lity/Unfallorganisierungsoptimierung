@@ -5,27 +5,34 @@ from ansi.colour import bg
 from variables import *
 from pprint import pprint
 
-def draw_grid(screen, color=''):
-    color = color if color!=None else bg.black
+
+def draw_grid(screen, color=""):
+    color = color if color != None else bg.black
     width, height = screen.size()
     for y in range(height):
-        for i in range(3*width+(width-4)): screen.set(i, y*4, '-')
+        for i in range(3 * width + (width - 4)):
+            screen.set(i, y * 4, "-")
     for x in range(width):
-        for i in range(3*height+(height-4)): screen.set(x*4, i, '|')
+        for i in range(3 * height + (height - 4)):
+            screen.set(x * 4, i, "|")
         for y in range(height):
-            screen.set(x*4, y*4, 'x')
+            screen.set(x * 4, y * 4, "x")
 
 
 def generate_weights(width, height):
-    weights = [[] for _ in range(width*height)]
+    weights = [[] for _ in range(width * height)]
 
-    for i in range(width*height):
-        if i+width<width*height:
-            w = randint(1,9)
-            weights[i].append([i+width, w, log_blend_colours[len(log_blend_colours)-w-2]])
-        if i%width+1<width:
-            w = randint(1,9)
-            weights[i].append([i+1, w, log_blend_colours[len(log_blend_colours)-w-2]])
+    for i in range(width * height):
+        if i + width < width * height:
+            w = randint(1, 9)
+            weights[i].append(
+                [i + width, w, log_blend_colours[len(log_blend_colours) - w - 2]]
+            )
+        if i % width + 1 < width:
+            w = randint(1, 9)
+            weights[i].append(
+                [i + 1, w, log_blend_colours[len(log_blend_colours) - w - 2]]
+            )
 
     for i, point in enumerate(weights):
         for weight in point:
@@ -33,33 +40,36 @@ def generate_weights(width, height):
             ws = weight[1]
             w = weight[2]
 
-            if not any([ind == i for ind in [wts[0] for wts in weights[index]]]): weights[index].append([i,ws,w])
-
+            if not any([ind == i for ind in [wts[0] for wts in weights[index]]]):
+                weights[index].append([i, ws, w])
 
     return weights
+
 
 def draw_weights(screen, weights):
     width = screen.width
     for i, item in enumerate(weights):
-        x = i%width * 4
-        y = i//width * 4
+        x = i % width * 4
+        y = i // width * 4
 
         for weight in item:
             char = str(weight[1])
             color = weight[2]
 
             index = weight[0]
-            nx, ny = index%width * 4, index//width * 4
+            nx, ny = index % width * 4, index // width * 4
 
             screen.set(int(mean([x, nx])), int(mean([y, ny])), char, foreground=color)
+
 
 def sort_dict(d):
     keys = [key for key in d.keys()]
     keys.sort()
     rd = {}
     for key in keys:
-        rd[key]=d[key]
+        rd[key] = d[key]
     return rd
+
 
 def shortest_paths_from(index, weights):
     visited = []
@@ -77,11 +87,11 @@ def shortest_paths_from(index, weights):
 
                 if un in s_paths.keys():
                     dist = s_paths[un][0]
-                    if dist>s_paths[c_index][0]+w:
-                        s_paths[un][0] = s_paths[c_index][0]+w
+                    if dist > s_paths[c_index][0] + w:
+                        s_paths[un][0] = s_paths[c_index][0] + w
                         s_paths[un][1] = c_index
                 else:
-                    s_paths[un] = [s_paths[c_index][0]+w, c_index]
+                    s_paths[un] = [s_paths[c_index][0] + w, c_index]
         visited.append(c_index)
         unvisited.remove(c_index)
 
@@ -90,25 +100,27 @@ def shortest_paths_from(index, weights):
 
         for key, value in s_paths.items():
             if key in unvisited:
-                if sd==-1:
+                if sd == -1:
                     sd = value[0]
                     sk = key
-                elif value[0]<sd:
+                elif value[0] < sd:
                     sd = value[0]
                     sk = key
         c_index = sk
         c_weight = weights[c_index]
 
-        if len(unvisited)==0:
+        if len(unvisited) == 0:
             break
 
     return sort_dict(s_paths)
+
 
 def distance(path, target=None):
     if target == None:
         target = path[1]
         path = path[0]
     return path[target][0]
+
 
 def way(path, target=None):
     if target == None:
@@ -120,20 +132,22 @@ def way(path, target=None):
         if key == value[1]:
             start = key
     i = target
-    while i!=start:
+    while i != start:
         way.append(path[i][1])
         i = path[i][1]
     way.reverse()
     return way
 
+
 def fast_meet(p1, p2):
     min = -1
     j = 0
     for i in range(len(p1)):
-        if min==-1 or p1[i][0]+p2[i][0]<min:
-            min = p1[i][0]+p2[i][0]
+        if min == -1 or p1[i][0] + p2[i][0] < min:
+            min = p1[i][0] + p2[i][0]
             j = i
     return j, min
+
 
 def clear(screen, weights, debug):
     screen.clear(debug=debug)

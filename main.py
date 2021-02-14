@@ -11,9 +11,14 @@ from variables import log_blend_colours
 from screen import Screen
 from object import Object
 from time import time
+import platform
 
 def main():
-    system('cls')
+    if platform.system()=='Windows':
+        system('cls')
+    else:
+        system('clear')
+
     width, height = 10,10
     screen = Screen(width, height)
 
@@ -52,32 +57,28 @@ def main():
             if v[0]>=v[1]:
                 mp = v[2]
         if mp==-1:
-            # screen.show_way(way(pu, rettungswagen.index), bg.white)
-            #
-            # screen.show_object([notarzt, rettungswagen, unfall])
-            # screen.display()
-            return 1
+            screen.show_way(way(pu, rettungswagen.index), bg.white)
+
+            screen.show_object([notarzt, rettungswagen, unfall])
+            screen.display()
+            # return 1
         else:
-            # screen.show_way(way(pu, rettungswagen.index), bg.white)
-            # screen.show_way(way(pn, mp), bg.red)
-            #
-            # screen.show_object([notarzt, rettungswagen, unfall])
-            # screen.display()
-            return 2
+            screen.show_way(way(pu, rettungswagen.index), bg.white)
+            screen.show_way(way(pn, mp), bg.red)
+
+            screen.show_object([notarzt, rettungswagen, unfall])
+            screen.display()
+            # return 2
 
     else:
-        # screen.show_way(way(shortest_paths_from(unfall.index, weights), rettungswagen.index), bg.white)
-        # screen.show_way(way(shortest_paths_from(unfall.index, weights), notarzt.index), bg.red)
-        #
-        # screen.show_object([notarzt, rettungswagen, unfall])
-        # screen.display()
-        return 3
+        screen.show_way(way(shortest_paths_from(unfall.index, weights), rettungswagen.index), bg.white)
+        screen.show_way(way(shortest_paths_from(unfall.index, weights), notarzt.index), bg.red)
+
+        screen.show_object([notarzt, rettungswagen, unfall])
+        screen.display()
+        # return 3
+
+
 
 if '__main__' == __name__:
-    start = time()
-    s = [0, 0, 0]
-    c = 0
-    while True:
-        c += 1
-        s[main()-1]+=1
-        print(f'\n\n\n{c}\n{(time()-start)}\n1: {s[0]/c*100}\n2: {s[1]/c*100}\n3: {s[2]/c*100}')
+    main()

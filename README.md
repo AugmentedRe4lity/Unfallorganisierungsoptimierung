@@ -88,4 +88,4 @@ Die Aufgabe die Wege von Notärzten und Rettungswägen zu optimieren, um schnell
 **Quellen- und Literaturverzeichnis [**https://www.youtube.com/watch?v=09_LlHjoEiY&t=5s ](https://www.youtube.com/watch?v=09_LlHjoEiY&t=5s)**(3.11.2020) [https://www.youtube.com/watch?v=-L-WgKMFuhE ](https://www.youtube.com/watch?v=-L-WgKMFuhE)(14.10.2020) [https://www.youtube.com/watch?v=ySN5Wnu88nE&t=191s ](https://www.youtube.com/watch?v=ySN5Wnu88nE&t=191s)(14.10.2020) [https://www.youtube.com/watch?v=pVfj6mxhdMw ](https://www.youtube.com/watch?v=pVfj6mxhdMw)(6.11.2020) [https://www.youtube.com/watch?v=GazC3A4OQTE ](https://www.youtube.com/watch?v=GazC3A4OQTE)(6.11.2020) 
 
 **Anhang:[** https://github.com/AugmentedRe4lity/Unfallorganisierungsoptimierung** ](https://github.com/AugmentedRe4lity/Unfallorganisierungsoptimierung)**
-Stand: 29.01.2021 **PAGE4/NUMPAGES4** 
+Stand: 29.01.2021

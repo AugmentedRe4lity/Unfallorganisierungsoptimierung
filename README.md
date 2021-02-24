@@ -14,8 +14,6 @@ Bundesland: Schleswig-Holstein
 
 Wettbewerbsjahr: 2021 
 
-*Ihr könnt euer eigenes Deckblatt erstellen und es schön gestalten. Das Deckblatt zählt nicht zu den 15 Seiten. Ein Deckblatt wird später auch noch einmal automatisch von Jugend forscht er- stellt.* 
-
 **Inhaltsverzeichnis** 
 
 1. Kurzfassung .......................................................................................................................2 

@@ -87,23 +87,23 @@ def main():
             if v[0] >= v[1]:
                 mp = v[2]
         if mp == -1:
-            screen.show_way(way(pu, rettungswagen.index), bg.white)
+            screen.show_way(way(pu, rettungswagen.index), bg.green)
 
             screen.show_object([notarzt, rettungswagen, unfall])
             screen.display()
             # return 1
         else:
-            screen.show_way(way(pu, rettungswagen.index), bg.white)
+            screen.show_way(way(pu, rettungswagen.index), bg.green)
             screen.show_way(way(pn, mp), bg.red)
 
-            screen.show_object([notarzt, rettungswagen, unfall])
+            screen.show_object([notarzt, rettungswagen, unfall])s
             screen.display()
             # return 2
 
     else:
         screen.show_way(
             way(shortest_paths_from(unfall.index, weights), rettungswagen.index),
-            bg.white,
+            bg.green,
         )
         screen.show_way(
             way(shortest_paths_from(unfall.index, weights), notarzt.index), bg.red

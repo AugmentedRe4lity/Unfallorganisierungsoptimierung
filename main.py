@@ -96,7 +96,7 @@ def main():
             screen.show_way(way(pu, rettungswagen.index), bg.green)
             screen.show_way(way(pn, mp), bg.red)
 
-            screen.show_object([notarzt, rettungswagen, unfall])s
+            screen.show_object([notarzt, rettungswagen, unfall])
             screen.display()
             # return 2
 
